@@ -239,7 +239,7 @@ void auctus_keystream_creation(dsd_state * state, char * input)
     fprintf (stderr, "%02X", ks_bytes[i]);
   fprintf (stderr," - Word Bit Reverse: ");
   for (uint16_t i = 0; i < 6; i++)
-    fprintf (stderr, "%02X", convert_bits_into_output(state->static_ks_bits[0]+(i*8), 8));
+    fprintf (stderr, "%02X", (unsigned int)convert_bits_into_output(state->static_ks_bits[0]+(i*8), 8));
   fprintf (stderr, " with Forced Application \n");
 
   state->straight_ks = 1;

@@ -10,6 +10,7 @@
 *-----------------------------------------------------------------------------*/
 
 #include "dsd.h"
+#include <wchar.h>
 
 //below items are in cmake as -DASCII=ON (default), or -DBIG5=ON , -DSJIS=ON , or -DUTF16=ON
 // #define ASCII_DECODE //if using older ASCII only Alias Decoder, and not new one.
@@ -849,7 +850,7 @@ void NXDN_decode_Alias16(dsd_opts * opts, dsd_state * state, uint8_t * Message)
       if (utf8 >= 0x20 && utf8 < 0x80)
       {
         uni = sjis_char_to_unicode(utf8);
-        fprintf (stderr, "%lc", uni);
+        fprintf (stderr, "%lc", (wint_t)uni);
         k++;
       }
       else if (c16b != 0)
@@ -862,7 +863,7 @@ void NXDN_decode_Alias16(dsd_opts * opts, dsd_state * state, uint8_t * Message)
         uni = c16b; //UTF16BE
         // uni = (state->dmr_pdu_sf[0][k+1] << 8) | state->dmr_pdu_sf[0][k+0]; //UTF16LE (for test only)
         #endif
-        fprintf (stderr, "%lc", uni);
+        fprintf (stderr, "%lc", (wint_t)uni);
         k+=2;
       }
       else if (utf8 == 0 && c16b == 0)
@@ -2393,13 +2394,13 @@ void NXDN_decode_ALIAS_ARIB(dsd_opts * opts, dsd_state * state, uint8_t * Messag
       if (utf8 >= 0x20 && utf8 < 0x80)
       {
         c16 = sjis_char_to_unicode(utf8);
-        fprintf (stderr, "%lc", c16);
+        fprintf (stderr, "%lc", (wint_t)c16);
         k++;
       }
       else if (sjis != 0)
       {
         c16 = sjis_char_to_unicode(sjis);
-        fprintf (stderr, "%lc", c16);
+        fprintf (stderr, "%lc", (wint_t)c16);
         k+=2;
       }
       else if (utf8 == 0 && sjis == 0)

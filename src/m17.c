@@ -1139,6 +1139,8 @@ void M17processCodec2_3200(dsd_opts * opts, dsd_state * state, uint8_t * payload
   free (upsamp);
   free (out);
 
+  #else
+  UNUSED(state);
   #endif
 
 }

@@ -71,7 +71,7 @@ void p25_lcw (dsd_opts * opts, dsd_state * state, uint8_t LCW_bits[], uint8_t ir
         if (group != 0)
           state->lasttg = group;
         // if (source != 0) //disable now with new event history, if same src next ptt, then it will capture all of them as individual event items
-          state->lastsrc = source;
+        state->lastsrc = source;
 
         sprintf (state->call_string[0], "   Group ");
         if (lc_svcopt & 0x80) strcat (state->call_string[0], " Emergency  ");
@@ -90,7 +90,7 @@ void p25_lcw (dsd_opts * opts, dsd_state * state, uint8_t LCW_bits[], uint8_t ir
         if (target != 0)
           state->lasttg = target;
         // if (source != 0) //disable now with new event history, if same src next ptt, then it will capture all of them as individual event items
-          state->lastsrc = source;
+        state->lastsrc = source;
         state->gi[0] = 1;
         state->dmr_so = lc_svcopt;
 

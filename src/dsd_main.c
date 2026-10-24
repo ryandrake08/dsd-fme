@@ -3550,9 +3550,6 @@
        fprintf(stderr, "Audio Out Device: -\n");
      }
  
-     int fmt;
-     int speed;
- 
      //The long of the short is that PADSP can open multiple virtual /dev/dsp devices each with different sampling rates and channel configurations
      //but the instance inside of Cygwin is a single instance tied to one sample rate AND one channel configuration, so if you change it on the output, it
      //also changes on the input, and the way dsd handles this is to upsample output to make it work correctly, so in order to be able to change the output
@@ -3576,7 +3573,8 @@
      #endif
 
      #ifndef __APPLE__
-     speed = 48000; //hardset to 48000
+     int fmt;
+     int speed = 48000; //hardset to 48000
      if((strncmp(opts.audio_in_dev, "/dev/dsp", 8) == 0))
      {
        fprintf (stderr, "OSS Input %s.\n", opts.audio_in_dev);
