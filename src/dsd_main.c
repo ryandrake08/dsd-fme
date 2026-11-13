@@ -3284,19 +3284,8 @@
        }
        else
        {
-         #ifdef __CYGWIN__
-         sprintf (opts.audio_in_dev, "%s", "/dev/dsp");
-         opts.audio_in_type = 5;
-         #else
-         if (opts.frame_m17 == 1)
-         {
-           sleep(1);
-           goto TCPEND; //try again if using M17 encoder / decoder over TCP
-         }
-         sprintf (opts.audio_in_dev, "%s", "pulse");
-         fprintf (stderr, "TCP Connection Failure - Using %s Audio Input.\n", opts.audio_in_dev);
-         opts.audio_in_type = 0;
-         #endif
+         sleep(1);
+         goto TCPEND; //keep trying until the server is listening or ctrl+c
        }
  
      }

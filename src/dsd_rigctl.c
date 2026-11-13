@@ -57,7 +57,8 @@ int Connect (char *hostname, int portno)
     if (server == NULL) {
         fprintf(stderr,"ERROR, no such host as %s\n", hostname);
         //exit(0);
-        return (0); //return 0, check on other end and configure pulse input
+        close(sockfd);
+        return (0); //return 0 on failure
     }
 
     /* build the server's Internet address */
@@ -71,6 +72,7 @@ int Connect (char *hostname, int portno)
     if (connect(sockfd, (const struct sockaddr *) &serveraddr, sizeof(serveraddr)) < 0)
     {
         fprintf(stderr,"ERROR opening socket\n");
+        close(sockfd);
         return (0);
     }
 
