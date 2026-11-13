@@ -612,6 +612,7 @@ void ncursesMenu (dsd_opts * opts, dsd_state * state)
           //successful connection, continue;
 
           opts->audio_in_type = 8;
+          free(opts->audio_in_file_info);
           opts->audio_in_file_info = calloc(1, sizeof(SF_INFO));
           opts->audio_in_file_info->samplerate=opts->wav_sample_rate;
           opts->audio_in_file_info->channels=1;

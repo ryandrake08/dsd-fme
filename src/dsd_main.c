@@ -603,6 +603,7 @@
    opts->onesymbol = 10;
    opts->mbe_in_file[0] = 0;
    opts->mbe_in_f = NULL;
+   opts->audio_in_file_info = NULL;
    opts->errorbars = 1;
    opts->datascope = 0;
    opts->symboltiming = 0;

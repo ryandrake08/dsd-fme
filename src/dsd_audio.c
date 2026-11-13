@@ -857,6 +857,7 @@ openAudioInDevice (dsd_opts * opts)
 	if (strncmp(opts->audio_in_dev, "-", 1) == 0)
 	{
     opts->audio_in_type = 1;
+    free(opts->audio_in_file_info);
     opts->audio_in_file_info = calloc(1, sizeof(SF_INFO));
     opts->audio_in_file_info->samplerate=opts->wav_sample_rate;
     opts->audio_in_file_info->channels=1;
@@ -879,6 +880,7 @@ openAudioInDevice (dsd_opts * opts)
   else if (strncmp(opts->audio_in_dev, "tcp", 3) == 0)
   {
     opts->audio_in_type = 8;
+    free(opts->audio_in_file_info);
     opts->audio_in_file_info = calloc(1, sizeof(SF_INFO));
     opts->audio_in_file_info->samplerate=opts->wav_sample_rate;
     opts->audio_in_file_info->channels=1;
@@ -934,6 +936,7 @@ openAudioInDevice (dsd_opts * opts)
   else if (extension == NULL)
   {
     opts->audio_in_type = 2;
+    free(opts->audio_in_file_info);
     opts->audio_in_file_info = calloc(1, sizeof(SF_INFO));
     opts->audio_in_file_info->samplerate = opts->wav_sample_rate;
     opts->audio_in_file_info->channels = 1;
@@ -955,6 +958,7 @@ openAudioInDevice (dsd_opts * opts)
     fprintf (stderr, "Opening M17 .rrc headless wav file\n");
 
     opts->audio_in_type = 2;
+    free(opts->audio_in_file_info);
     opts->audio_in_file_info = calloc(1, sizeof(SF_INFO));
     opts->audio_in_file_info->samplerate = 48000;
     opts->audio_in_file_info->channels = 1;
@@ -1039,6 +1043,7 @@ openAudioInDevice (dsd_opts * opts)
     if (S_ISREG(stat_buf.st_mode))
     {
       opts->audio_in_type = 2; //two now, seperating STDIN and wav files
+      free(opts->audio_in_file_info);
       opts->audio_in_file_info = calloc(1, sizeof(SF_INFO));
       opts->audio_in_file_info->samplerate=opts->wav_sample_rate;
       opts->audio_in_file_info->channels=1;

@@ -669,6 +669,7 @@ uint8_t ncurses_input_handler(dsd_opts * opts, dsd_state * state, int c)
     if (opts->tcp_sockfd != 0)
     {
       //reset audio input stream
+      free(opts->audio_in_file_info);
       opts->audio_in_file_info = calloc(1, sizeof(SF_INFO));
       opts->audio_in_file_info->samplerate=opts->wav_sample_rate;
       opts->audio_in_file_info->channels=1;
